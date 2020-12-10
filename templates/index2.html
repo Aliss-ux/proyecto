@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Buzon de Sugerencias</title>
+    <link rel="icon" type="image/png" href="/static/img/icon-logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/estilos.css">
+    <script src="/static/js/script.js" language="javascript" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv ="X-UA-Compatible" content ="ie-edge">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fjalla+One|Source+Sans+Pro">
+    <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+    <script src="/static/js/script.js" language="javascript" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"> 
+  </head>
+
+<body background="/static/img/Red Sunset.jpg">
+  
+    <!-- funcion del menu boton burguer-->
+    <i class="icon-menu burger-menu" id="burger-menu"></i>
+    <header class="header">
+      <div class="container">
+        <figure class="logo">
+          <img src="{{ url_for('static', filename='img/logo.png') }}" height="50" alt="" />
+        </figure>
+        <nav class="menu">
+          <ol>
+            <li>
+              <a class="link" href="#">Inicio</a>
+            </li>
+            <li>
+              <a class="link" href="https://www.umsa.bo/">UMSA</a>
+            </li>
+            <li>
+              <a class="link" href="https://informatica.edu.bo/">Informatica</a>
+            </li>
+            <li>
+              <a href="/login2">Iniciar Seción</a>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </header>
+    
+   
+   
+<!--Formulario para introducir datos-->
+    <section class="hero">
+      <div class="container">
+        <h1>
+          <strong>Quejas</strong> y <strong>Sugerencias</strong> <br>
+        </h1>
+        <figure class="logo" >
+          <img src="/static/img/Pc.png" alt="" height="70px" width="70px" clear="right">
+        </figure>
+      </div>
+    </section>
+    <div class="container">
+    <div class="titulo">
+      <h1> 
+        <strong>Buzon Virtual</strong>
+      </h1>
+    </div>
+  </div> 
+  <!--formulario principal-->
+  <div class="containers">  
+        <form id="contact" action="/datos" method = "POST">
+          <h3>Llena aqui</h3>
+          <h6>Con el propósito de proporcionar un mecanismo de comunicación efectiva ponemos a tu disposición este Servicio</h6>
+          <fieldset>
+            <div class="form-group">
+              <input placeholder="Tu nombre" type="text" tabindex="1" id="Nombre" required autofocus name="nombre" class="form-control">
+            </div> 
+          </fieldset>
+          <fieldset>
+            <div class="form-group">
+              <input placeholder="Correo electronico" type="email" tabindex="2" required name="correo" class="form-control">
+            </div> 
+          </fieldset>
+          <fieldset>
+            <div class="form-group">
+              <input placeholder="Numero de Celular (Opcional)" type="tel" tabindex="3" required name="celular" class="form-control">  
+            </div>
+           </fieldset>
+          <fieldset>
+            <div class="form-group">
+              <input placeholder="Queja o Sugerencia" type="text" tabindex="4" required name="motivo" class="form-control">
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="form-group">
+              <textarea placeholder="Escriba su mensaje aqui" tabindex="5" required  type="text" name="mensaje" class="form-control"></textarea>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="form-group">
+              <button  name="submit" type="submit"  onclick="buttonChange(this)" id="holaNombre" value="Hola" class="btn btn-warning btn-block" class="form-control">Enviar</button>
+            </div> 
+          </fieldset>
+        </form>
+  </div>
+
+   <!--desde aqui es el mensaje confirmacion-->
+  <script> 
+    function buttonChange( that ){
+      let val = that.value;
+      if( that.id == 'holaNombre' ){
+        let nombre = document.getElementById('Nombre').value;
+        alert( val + ' ' + nombre + ' gracias por tu mensaje te mandaremos un correo lo mas antes posible' );
+        window.location='/index2.html'; 
+      }else{
+        alert( val ); 
+      }
+    }
+  </script>
+
+
+    <!-- Pie de Pagina -->
+    
+      <footer class="footer">
+        <figure class="logo">
+          <img src="{{ url_for('static', filename='img/info.png') }}" height="100px" alt="" width="100px"/>
+        </figure>
+        
+        <div class="container">
+          <div>
+            <p>
+              <h4>RECURSOS </h4>
+            </p>
+            <p>
+              CARRERA DE INFORMÁTICA <br>
+              AV. VILLAZÓN NRO 1995 MONOBLOCK CENTRAL, SEGUNDO PATIO, EDIF. CARRERA DE INFORMÁTICA<br>
+              TELÉFONO 2440338 – 2440325 – 2441422 FAX 2441422<br>
+              e-mail : informatica@informatica.edu.bo<br>
+            </p>
+          </div>
+        </div>
+        <figure class="logo">
+          <img src="{{ url_for('static', filename='img/ums.png') }}" clear="right" height="120px" alt="" width="120px"/>
+        </figure>
+      </footer>
+    
+    
+    <script>
+
+      // Funcion que hace el boton de hamburguesa menu
+      const $burgerMenu = document.querySelector('#burger-menu');
+      const $menu = document.querySelector('.menu');
+      const ipad = window.matchMedia('(max-width: 767px)');
+      runBurgerMenu(ipad.matches);
+      ipad.addListener((event) => {
+        runBurgerMenu(event.matches)
+      })
+      function hideShow() {
+        if ($menu.classList.contains('is-active')) {
+          $menu.classList.remove('is-active');
+        } else {
+          $menu.classList.add('is-active');
+        }
+      }
+      function runBurgerMenu(yes) {
+        if (yes) {
+          $burgerMenu.addEventListener('click', hideShow);
+        } else {
+          $burgerMenu.removeEventListener('click', hideShow);
+        }
+      }
+    </script>
+
+<!--enlaces para el manejo de script-->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+        <script src="{{url_for('static', filename='js/main.js')}}"></script> 
+  
+  </body>
+</html>
